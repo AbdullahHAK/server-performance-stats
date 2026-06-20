@@ -20,3 +20,10 @@ IDLE_CPU=${IDLE_CPU//,/.}
 CPU_USAGE=$(awk "BEGIN {print 100 - $IDLE_CPU}")
 
 echo "Total CPU Usage: ${CPU_USAGE}%"
+
+# spaces matter a lot in bash
+# ❌ This breaks in Bash:
+#IDLE_CPU = $(top -bn1 ...)
+
+#  This is correct:
+#IDLE_CPU=$(top -bn1 ...)
