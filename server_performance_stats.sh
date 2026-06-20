@@ -61,7 +61,13 @@ df -h / | awk 'NR==2{
 echo "----------------"
 echo "--Top 5 processes by CPU usage--"
 
-ps -eo pid,user,%mem,comm --sort=-%mem | head -n 6
+ps -eo pid,user,%cpu,comm --sort=-%cpu | head -n 6
 #ps lists process, e means every, o means u can build custom table with it, and pid,user,mem are all the columns. sorts it by memory and icludes only 6 lines because header is also included
-#-%mem sorts it in descending order
+#-%cpu sorts it in descending order
 
+
+# Top 5 processes by memory usage
+echo "----------------"
+echo "--Top 5 processes by Memory usage--"
+
+ps -eo pid,user,%mem,comm --sort=-%cpu | head -n 6
