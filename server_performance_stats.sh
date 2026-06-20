@@ -30,8 +30,8 @@ echo "Total CPU Usage: ${CPU_USAGE}%"
 
 
 
-
-
+echo "----------------"
+echo "Memory Usage"
 # Total memory usage (Free vs Used including percentage)
 free -m | awk 'NR==2 {   
     total=$2;
@@ -42,3 +42,17 @@ free -m | awk 'NR==2 {
 }'
 
 #NR==2 means second row, whcih is memory. total=$2 means second column, similarly third for used and 4th for free mem
+
+
+
+echo "----------------"
+echo "--Disk Usage--"
+# Total disk usage (Free vs Used including percentage)
+df -h / | awk 'NR==2{
+    used=$3;
+    free_disk=$4;
+    percentage=$5;
+    printf "Used Disk Space: %s\nFree Disk Space: %s\nPercentage Used: %s\n", used, free_disk, percentage
+}'
+# df means disk free and -h for human readable, / is for root. it goes on line 2. column 3 shows used space, column 4 shows avil space, column 5 shows percentage
+
