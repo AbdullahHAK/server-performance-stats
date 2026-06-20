@@ -56,3 +56,12 @@ df -h / | awk 'NR==2{
 }'
 # df means disk free and -h for human readable, / is for root. it goes on line 2. column 3 shows used space, column 4 shows avil space, column 5 shows percentage
 
+
+#Top 5 processes by CPU usage
+echo "----------------"
+echo "--Top 5 processes by CPU usage--"
+
+ps -eo pid,user,%mem,comm --sort=-%mem | head -n 6
+#ps lists process, e means every, o means u can build custom table with it, and pid,user,mem are all the columns. sorts it by memory and icludes only 6 lines because header is also included
+#-%mem sorts it in descending order
+
