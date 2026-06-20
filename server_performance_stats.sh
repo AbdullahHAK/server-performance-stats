@@ -27,3 +27,18 @@ echo "Total CPU Usage: ${CPU_USAGE}%"
 
 #  This is correct:
 #IDLE_CPU=$(top -bn1 ...)
+
+
+
+
+
+# Total memory usage (Free vs Used including percentage)
+free -m | awk 'NR==2 {   
+    total=$2;
+    used=$3
+    free_mem=$4
+    percentage=(used*100)/total;
+    printf "Used Memory: %d MB\nFree Memory: %d MB\nPercentage Used: %.2f%%\n", used, free_mem, percentage
+}'
+
+#NR==2 means second row, whcih is memory. total=$2 means second column, similarly third for used and 4th for free mem
